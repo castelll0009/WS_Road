@@ -24,8 +24,7 @@ public class paginaRoad {
         //conecxio a la base de datos
         MongoDatabase database = mongoClient.getDatabase("Roadtosun");
         // Instancia  de la collecion
-        MongoCollection<Document> collection = database.getCollection("empleados");
-       //comentario comit
+        MongoCollection<Document> collection = database.getCollection("empleados");      
         //TODO:manejo adecuado si la coleccion no existe o esta vacia
         return  collection.find().first().toJson();        
 
