@@ -41,6 +41,11 @@ public class paginaRoad {
         //return  collection.find().first().toJson();                
 
     }
+    
+    public String FunciondeAdres(){
+        return null;
+    
+    }
 
 }
 
