@@ -46,6 +46,9 @@ public class paginaRoad {
         return null;
     
     }
+     public String castell(){
+         return "";
+     }
 
 }
 
