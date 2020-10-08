@@ -18,6 +18,7 @@ import org.bson.Document;
  */
 public class paginaRoad {
     public String consultarEmpleados(){
+        /*
         //return  "{\"clave\":\"hola Mundo\"}"; //{clave:"hola mundo"}
         //conexon a una base de  datos  remota
         MongoClient mongoClient;
@@ -30,15 +31,16 @@ public class paginaRoad {
         MongoCollection<Document> collection = db.getCollection("empleados");
         //Mostrar primer registro
         return collection.find().first().toJson();
+        */
         //conexion alservidor de base de datos
-       // MongoClient  mongoClient = MongoClients.create("mongodb://127.0.0.0:27017");
-        //MongoClient  mongoClient = MongoClients.create("mongodb://servercastell:27017");
-        //conecxio a la base de datos
-       // MongoDatabase database = mongoClient.getDatabase("Roadtosun");
-        // Instancia  de la collecion
-        //MongoCollection<Document> collection = database.getCollection("empleados");      
+        MongoClient  mongoClient = MongoClients.create("mongodb://127.0.0.0:27017");
+        MongoClient  mongoClient = MongoClients.create("mongodb://servercastell:27017");
+       // conecxio a la base de datos
+        MongoDatabase database = mongoClient.getDatabase("Roadtosun");
+        //Instancia  de la collecion
+        MongoCollection<Document> collection = database.getCollection("empleados");      
         //TODO:manejo adecuado si la coleccion no existe o esta vacia
-        //return  collection.find().first().toJson();                
+        return  collection.find().first().toJson();                
 
     }
      public String consultarClientes(){
