@@ -56,11 +56,9 @@ public class paginaRoad {
        //DBCollection usuarios = db.getCollection("usuarios");        
         Document findDocument = new Document();
         MongoCursor<Document> resultDocument = collection.find(findDocument).iterator();        
-        
-        int i = 0;
+                
         while (resultDocument.hasNext() ) { //mientras exitan mas elementos para iterar continuar                               
-                cadena = resultDocument.next().toJson();                 
-            i++;
+                cadena = resultDocument.next().toJson();                             
          }
 
         return cadena;

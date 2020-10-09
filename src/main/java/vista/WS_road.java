@@ -5,7 +5,6 @@
  */
 package vista;
 
-import com.mongodb.Mongo;
 import control.paginaRoad;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -59,7 +58,5 @@ public class WS_road {
        //diseñar el metodo para mostrar los 5 usuarios       
        return miRTS.ConsultarUltimoUsuario();
    }    
-    
-   
-    
+           
 }
