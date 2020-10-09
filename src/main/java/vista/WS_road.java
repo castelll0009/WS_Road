@@ -27,7 +27,6 @@ public class WS_road {
 
     @Context
     private UriInfo context;
-
     /**
      * Creates a new instance of WS_road
      */
@@ -40,16 +39,16 @@ public class WS_road {
     @Produces({"application/json"}) 
    public String consultarClientes(){
        paginaRoad miRTS= new paginaRoad();
-       return miRTS.consultarUsuarios();
-   }
-    
+       //diseñar el metodo para mostrar los 5 usuarios       
+       return miRTS.ConsultarUltimosCincoUsuarios();
+   }    
     
     @GET
     @Path("consultarEmpleados")
     @Produces({"application/json"})
     public  String ConsultarEmpleados(){
         paginaRoad miPagina = new paginaRoad();
-        return miPagina.consultarEmpleados();
+        return miPagina.ConsultarEmpleados();
     }
     
 }

@@ -19,7 +19,7 @@ import org.bson.Document;
 public class paginaRoad {
         
     
-    public String consultarEmpleados(){
+    public String ConsultarEmpleados(){
     //return  "{\"clave\":\"hola Mundo\"}"; //{clave:"hola mundo"}
         //conexon a una base de  datos  remota
         MongoClient mongoClient;
@@ -31,32 +31,21 @@ public class paginaRoad {
         MongoCollection<Document> collection = db.getCollection("empleados");
         //Mostrar primer registro
         return collection.find().first().toJson();
-        //conexion alservidor de base de datos
-       // MongoClient  mongoClient = MongoClients.create("mongodb://127.0.0.0:27017");
-        //MongoClient  mongoClient = MongoClients.create("mongodb://servercastell:27017");
-        //conecxio a la base de datos
-       // MongoDatabase database = mongoClient.getDatabase("Roadtosun");
-        // Instancia  de la collecion
-        //MongoCollection<Document> collection = database.getCollection("empleados");      
-        //TODO:manejo adecuado si la coleccion no existe o esta vacia
-        //return  collection.find().first().toJson();                
-
-    }
     
-     public String consultarUsuarios(){
-        //return  "{\"clave\":\"hola Mundo\"}"; //{clave:"hola mundo"}
-        //conexon a una base de  datos  remota
+    }
+    // consultar los  ultimos 5 usuarios
+     public String ConsultarUltimosCincoUsuarios(){                 
         MongoClient mongoClient;
         MongoClientURI uri = new
-        MongoClientURI("mongodb://userLab3:passworduserLab3@93.188.167.110:27017/?authSource=lab3");
-        
+        MongoClientURI("mongodb://userLab3:passworduserLab3@93.188.167.110:27017/?authSource=lab3");        
         MongoDatabase db;
+        
         mongoClient = new MongoClient(uri);
         db = mongoClient.getDatabase("lab3");
         MongoCollection<Document> collection = db.getCollection("usuarios");
-        //Mostrar primer registro
+                 
+        //Mostrar primer registro       
         return collection.find().first().toJson();                 
-
     }
 
 
