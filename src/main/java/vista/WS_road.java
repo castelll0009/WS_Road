@@ -32,17 +32,17 @@ public class WS_road {
      * Creates a new instance of WS_road
      */
     public WS_road() {
+        
     }
-/*
+
     @GET
-    @Path("consultarUsuario/idUsuario/{idUsuario}/nombre/{nombre}")
-    @Produces({"application/json"})
-    public String consultarUsuario(@PathParam("idUsuario ") String idUsuario,
-    @PathParam("nombre ") String nombre){
-    paginaRoad mipagina = new paginaRoad();
-    return mipagina.consultarUsuario(idUsuario, nombre);
-    }
-    */
+    @Path("consultarUsuarios")
+    @Produces({"application/json"}) 
+   public String consultarClientes(){
+       paginaRoad miRTS= new paginaRoad();
+       return miRTS.consultarUsuarios();
+   }
+   
     
     @GET
     @Path("consultarEmpleados")
