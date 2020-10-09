@@ -34,21 +34,32 @@ public class WS_road {
         
     }
 
-    @GET
-    @Path("consultarUsuarios")
-    @Produces({"application/json"}) 
-   public String consultarClientes(){
-       paginaRoad miRTS= new paginaRoad();
-       //diseñar el metodo para mostrar los 5 usuarios       
-       return miRTS.ConsultarUltimosCincoUsuarios();
-   }    
-    
-    @GET
+     @GET
     @Path("consultarEmpleados")
     @Produces({"application/json"})
-    public  String ConsultarEmpleados(){
+    public  String consultarEmpleados(){
         paginaRoad miPagina = new paginaRoad();
         return miPagina.ConsultarEmpleados();
     }
+    
+    @GET
+    @Path("consultarUsuarios")
+    @Produces({"application/json"}) 
+    public String consultarUsuarios(){
+       paginaRoad miRTS= new paginaRoad();
+       //diseñar el metodo para mostrar los 5 usuarios       
+       return miRTS.ConsultarUltimosCincoUsuarios();
+    }    
+    
+    @GET
+    @Path("consultarUltimoUsuario")
+    @Produces({"application/json"}) 
+   public String consultarUltimoUsuario(){
+       paginaRoad miRTS= new paginaRoad();
+       //diseñar el metodo para mostrar los 5 usuarios       
+       return miRTS.ConsultarUltimoUsuario();
+   }    
+    
+   
     
 }
