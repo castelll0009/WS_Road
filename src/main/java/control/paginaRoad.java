@@ -22,12 +22,12 @@ public class paginaRoad {
         //conexon a una base de  datos  remota
         MongoClient mongoClient;
         MongoClientURI uri = new
-        MongoClientURI("mongodb://Lab3:passworduserLab3@93.188.167.110:27017/?authSource=lab3");
+        MongoClientURI("mongodb://userLab3:passworduserLab3@93.188.167.110:27017/?authSource=lab3");
         
         MongoDatabase db;
         mongoClient = new MongoClient(uri);
         db = mongoClient.getDatabase("lab3");
-        MongoCollection<Document> collection = db.getCollection("clientes");
+        MongoCollection<Document> collection = db.getCollection("usuarios");
         //Mostrar primer registro
         return collection.find().first().toJson();
         //conexion alservidor de base de datos
@@ -41,15 +41,7 @@ public class paginaRoad {
         //return  collection.find().first().toJson();                
 
     }
-    
-    public String FunciondeAdres(){
-        return null;
-    
-    }
-     public String castell(){
-         return "";
-     }
-
+       
 }
 
 

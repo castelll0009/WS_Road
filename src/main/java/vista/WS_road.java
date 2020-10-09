@@ -35,7 +35,7 @@ public class WS_road {
     @GET
     @Path("consultarClientes")
     @Produces({"application/json"})
-    public  String ConsultarClientes(){
+    public  String consultarClientes(){
         paginaRoad miPagina = new paginaRoad();
         return miPagina.consultarClientes();
     }
