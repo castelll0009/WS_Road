@@ -17,15 +17,15 @@ import org.bson.Document;
  * @author Ivan Esteban Castill
  */
 public class paginaRoad {
-          //return  "{\"clave\":\"hola Mundo\"}"; //{clave:"hola mundo"}
+        
+    
+    public String consultarEmpleados(){
+    //return  "{\"clave\":\"hola Mundo\"}"; //{clave:"hola mundo"}
         //conexon a una base de  datos  remota
         MongoClient mongoClient;
         MongoClientURI uri = new
         MongoClientURI("mongodb://userLab3:passworduserLab3@93.188.167.110:27017/?authSource=lab3");        
         MongoDatabase db;
-    
-    public String consultarEmpleados(){
-  
         mongoClient = new MongoClient(uri);
         db = mongoClient.getDatabase("lab3");
         MongoCollection<Document> collection = db.getCollection("empleados");

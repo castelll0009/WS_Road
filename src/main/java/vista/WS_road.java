@@ -42,7 +42,7 @@ public class WS_road {
        paginaRoad miRTS= new paginaRoad();
        return miRTS.consultarUsuarios();
    }
-   
+    
     
     @GET
     @Path("consultarEmpleados")
