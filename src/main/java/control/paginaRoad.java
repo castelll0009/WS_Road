@@ -90,6 +90,27 @@ public class paginaRoad {
         //Mostrar primer registro       
         //return collection.find().first().toJson();                 
     }   
+     
+      public String EliminarDocumentoCon(String identificador){   
+        String cadena =null;        
+        MongoClient mongoClient;
+        MongoClientURI uri = new
+        MongoClientURI("mongodb://userLab3:passworduserLab3@93.188.167.110:27017/?authSource=lab3");        
+        MongoDatabase db;        
+        mongoClient = new MongoClient(uri);        
+        db = mongoClient.getDatabase("lab3");
+               
+        //elegimos la collecion de la que desemaos eliminar el documento
+        MongoCollection<Document> collection = db.getCollection("usuarios");   
+        
+        //creamos un documento para especificar lo csriterios de  busqueda
+         Document findDocument = new Document("$oid", identificador);
+         
+         //buscar una persona   y borrarla
+         collection.findOneAndDelete(findDocument);        
+      
+        return cadena;
+    }
     
 }
 

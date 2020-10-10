@@ -53,10 +53,17 @@ public class WS_road {
     @GET
     @Path("consultarUltimoUsuario")
     @Produces({"application/json"}) 
-   public String consultarUltimoUsuario(){
+    public String consultarUltimoUsuario(){
        paginaRoad miRTS= new paginaRoad();
        //diseñar el metodo para mostrar los 5 usuarios       
        return miRTS.ConsultarUltimoUsuario();
-   }    
-           
+    }  
+   
+    @GET
+    @Path("eliminarDocumentoCon/idUsuario/{idUsuario}")
+    @Produces({"application/json"}) 
+    public String EliminarDocumentoCon(@PathParam("idUsuario") String idUsuario){
+        paginaRoad miPagina = new paginaRoad();
+    return miPagina.EliminarDocumentoCon(idUsuario);
+    }    
 }
