@@ -42,7 +42,7 @@ public class paginaRoad {
     }
     
     public String ConsultarUltimoUsuario(){   
-        String cadena = "";
+        String cadena =null;
         
         MongoClient mongoClient;
         MongoClientURI uri = new
@@ -55,13 +55,11 @@ public class paginaRoad {
         //Mostrar ultimo registro
        //DBCollection usuarios = db.getCollection("usuarios");        
         Document findDocument = new Document();
-        MongoCursor<Document> resultDocument = collection.find(findDocument).iterator();        
-                
+        MongoCursor<Document> resultDocument = collection.find(findDocument).iterator();         
         while (resultDocument.hasNext() ) { //mientras exitan mas elementos para iterar continuar                               
                 cadena = resultDocument.next().toJson();                             
          }
-
-        return cadena;
+        return  "UlTIMO USUARIO: \n\n" + cadena;
     }
 
     // consultar los  ultimos 5 usuarios
