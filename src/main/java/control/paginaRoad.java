@@ -59,7 +59,7 @@ public class paginaRoad {
         while (resultDocument.hasNext() ) { //mientras exitan mas elementos para iterar continuar                               
                 cadena = resultDocument.next().toJson();                             
          }
-        return  "UlTIMO USUARIO: \n\n" + cadena;
+        return cadena;
     }
 
     // consultar los  ultimos 5 usuarios
