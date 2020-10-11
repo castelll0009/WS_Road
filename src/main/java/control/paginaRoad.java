@@ -18,7 +18,10 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCursor;
+import static com.mongodb.client.model.Filters.eq;
 import org.bson.Document;
+import org.bson.conversions.Bson;
+import org.bson.types.ObjectId;
 /**
  *
  * @author Ivan Esteban Castill
@@ -92,7 +95,7 @@ public class paginaRoad {
     }   
      
       public String EliminarDocumentoCon(String identificador){   
-        String cadena =null;        
+        String cadena = "";          
         MongoClient mongoClient;
         MongoClientURI uri = new
         MongoClientURI("mongodb://userLab3:passworduserLab3@93.188.167.110:27017/?authSource=lab3");        
@@ -104,13 +107,39 @@ public class paginaRoad {
         MongoCollection<Document> collection = db.getCollection("usuarios");   
         
         //creamos un documento para especificar lo csriterios de  busqueda
-         Document findDocument = new Document("$oid", identificador);
+                        
+        Document findDocument = new Document("_id", new ObjectId(identificador));  
+        MongoCursor<Document> resultDocumentCadena = collection.find(findDocument).iterator();   
+        cadena = "objeto borrado:\n\n";
+        cadena += resultDocumentCadena.next().toJson();
+        //buscar una persona   y borrarla
+        MongoCursor<Document> resultDocument  = (MongoCursor<Document>) collection.findOneAndDelete(findDocument);       
+       
          
-         //buscar una persona   y borrarla
-         collection.findOneAndDelete(findDocument);        
+
       
         return cadena;
     }
+     public String MostrarDocumentoCon(String identificador) {
+        String cadena ="No se encontro usuario";          
+        MongoClient mongoClient;
+        MongoClientURI uri = new
+        MongoClientURI("mongodb://userLab3:passworduserLab3@93.188.167.110:27017/?authSource=lab3");        
+        MongoDatabase db;        
+        mongoClient = new MongoClient(uri);        
+        db = mongoClient.getDatabase("lab3");
+               
+        //elegimos la collecion de la que desemaos eliminar el documento
+        MongoCollection<Document> collection = db.getCollection("usuarios");   
+        //Document findDocument = new Document("nombre", identificador);            
+         Document findDocument = new Document("_id", new ObjectId(identificador));         
+
+       //collection.deleteOne(new Document("_id", new ObjectId(identificador)));
+        MongoCursor<Document> resultDocument  = collection.find(findDocument).iterator();       
+        cadena = resultDocument.next().toJson();  
+       return cadena;
+     }
+      
     
 }
 

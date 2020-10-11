@@ -66,4 +66,11 @@ public class WS_road {
         paginaRoad miPagina = new paginaRoad();
     return miPagina.EliminarDocumentoCon(idUsuario);
     }    
+    @GET
+    @Path("mostrarDocumentoCon/idUsuario/{idUsuario}")
+    @Produces({"application/json"}) 
+    public String MostrarDocumentoCon(@PathParam("idUsuario") String idUsuario){
+        paginaRoad miPagina = new paginaRoad();
+    return miPagina.MostrarDocumentoCon(idUsuario);
+    }    
 }
