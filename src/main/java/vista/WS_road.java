@@ -17,11 +17,8 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 
-/**
- * REST Web Service
- *
- * @author Ivan Esteban Castill
- */
+
+
 @Path("WS_road")
 public class WS_road {
 
@@ -33,16 +30,7 @@ public class WS_road {
     public WS_road() {
         
     }
-
-    @GET
-    @Path("consultarUsuarios")
-    @Produces({"application/json"}) 
-   public String consultarClientes(){
-       paginaRoad miRTS= new paginaRoad();
-       //diseñar el metodo para mostrar los 5 usuarios       
-       return miRTS.ConsultarUltimosCincoUsuarios();
-   }    
-    
+        
     @GET
     @Path("consultarEmpleados")
     @Produces({"application/json"})
