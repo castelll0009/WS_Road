@@ -30,25 +30,8 @@ public class paginaRoad {
         db = mongoClient.getDatabase("lab3");
         MongoCollection<Document> collection = db.getCollection("empleados");
         //Mostrar primer registro
-        return collection.find().first().toJson();
-    
-    }
-    // consultar los  ultimos 5 usuarios
-     public String ConsultarUltimosCincoUsuarios(){                 
-        MongoClient mongoClient;
-        MongoClientURI uri = new
-        MongoClientURI("mongodb://userLab3:passworduserLab3@93.188.167.110:27017/?authSource=lab3");        
-        MongoDatabase db;
-        
-        mongoClient = new MongoClient(uri);
-        db = mongoClient.getDatabase("lab3");
-        MongoCollection<Document> collection = db.getCollection("usuarios");
-                 
-        //Mostrar primer registro       
-        return collection.find().first().toJson();                 
-    }
-
-
+        return collection.find().first().toJson();    
+    }      
 }
 
 
