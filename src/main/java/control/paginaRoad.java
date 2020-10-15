@@ -110,10 +110,7 @@ public class paginaRoad {
         Document findDocument = null;
         //creamos un documento para especificar lo csriterios de  busqueda
           try {
-              findDocument = new Document("_id", new ObjectId(identificador));   
-              if(identificador.length() > 3){
-                  cadena = "espacio vacio en iusaidoop";
-              }
+              findDocument = new Document("_id", new ObjectId(identificador));                 
           } catch (Exception e) {
               cadena = e.toString();
               banderaExepcion = true;
@@ -121,17 +118,15 @@ public class paginaRoad {
           }
         MongoCursor<Document> resultDocumentCadena = null;
         if(!banderaExepcion){          
-                  resultDocumentCadena = collection.find(findDocument).iterator();  
-                while (resultDocumentCadena.hasNext() ) { //mientras exitan mas elementos para iterar continuar                                                                         
-         }
-           if(resultDocumentCadena.next().toJson() == null){
+                  resultDocumentCadena = collection.find(findDocument).iterator();                                                 
+           if(resultDocumentCadena.hasNext() == true){
                cadena = resultDocumentCadena.next().toJson();        
                cadena += "   No se encontro un documento con ese identidicador";
            }else{
                cadena = "El documento fue eliminado con exito ";
                cadena += resultDocumentCadena.next().toJson();     
                 //buscar una persona   y borrarla                                   
-               resultDocumentCadena = (MongoCursor<Document>) collection.findOneAndDelete(findDocument);
+               resultDocumentCadena =  (MongoCursor<Document>) collection.findOneAndDelete(findDocument);
            }              
         }                                
         return cadena;
