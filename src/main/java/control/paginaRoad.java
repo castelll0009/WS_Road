@@ -119,22 +119,19 @@ public class paginaRoad {
               banderaExepcion = true;
               cadena += " ,EL identificador no es un numero hexadecimal valido";
           }
-          
-        if(!banderaExepcion){
-           MongoCursor<Document> resultDocumentCadena = null;
+        MongoCursor<Document> resultDocumentCadena = null;
+        if(!banderaExepcion){          
                   resultDocumentCadena = collection.find(findDocument).iterator();  
-                while (resultDocumentCadena.hasNext() ) { //mientras exitan mas elementos para iterar continuar                               
-                resultDocumentCadena.next().toJson();                             
+                while (resultDocumentCadena.hasNext() ) { //mientras exitan mas elementos para iterar continuar                                                                         
          }
-           if(resultDocumentCadena == null){
-               cadena = resultDocumentCadena.toString();
-               
-               //cadena = "No se encontro un documento con ese identidicador";
+           if(resultDocumentCadena.next().toJson() == null){
+               cadena = resultDocumentCadena.next().toJson();        
+               cadena += "   No se encontro un documento con ese identidicador";
            }else{
                cadena = "El documento fue eliminado con exito ";
-               cadena += resultDocumentCadena.toString();
-                //buscar una persona   y borrarla
-               Document resultDocument  = collection.findOneAndDelete(findDocument);                      
+               cadena += resultDocumentCadena.next().toJson();     
+                //buscar una persona   y borrarla                                   
+               resultDocumentCadena = (MongoCursor<Document>) collection.findOneAndDelete(findDocument);
            }              
         }                                
         return cadena;
