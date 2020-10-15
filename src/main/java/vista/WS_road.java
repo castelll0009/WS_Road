@@ -38,5 +38,12 @@ public class WS_road {
         paginaRoad miPagina = new paginaRoad();
         return miPagina.ConsultarEmpleados();
     }
+       @GET
+    @Path("actualizarDocumento/idEmpleado/{idEmpleado}")
+    @Produces({"application/json"}) 
+    public String actualizarDocumento(@javax.ws.rs.PathParam("idEmpleado") String idEmpleado){
+           WS_road miPagina = new WS_road();
+    return miPagina.actualizarDocumento(idEmpleado);
+    }  
     
 }
