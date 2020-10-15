@@ -64,6 +64,9 @@ public class WS_road {
     @Produces({"application/json"}) 
     public String EliminarDocumentoCon(@PathParam("idUsuario") String idUsuario){
         paginaRoad miPagina = new paginaRoad();
+        if(idUsuario.length() <=0){
+                 return "espacio vacio en iusaidoop";
+              }
     return miPagina.EliminarDocumentoCon(idUsuario);
     }    
     @GET

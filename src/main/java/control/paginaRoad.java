@@ -106,22 +106,42 @@ public class paginaRoad {
         //elegimos la collecion de la que desemaos eliminar el documento
         MongoCollection<Document> collection = db.getCollection("usuarios");   
         
+        boolean banderaExepcion = false;
+        Document findDocument = null;
         //creamos un documento para especificar lo csriterios de  busqueda
-                        
-        Document findDocument = new Document("_id", new ObjectId(identificador));  
-        MongoCursor<Document> resultDocumentCadena = collection.find(findDocument).iterator();   
-        cadena = "objeto borrado:\n\n";
-        cadena += resultDocumentCadena.next().toJson();
-        //buscar una persona   y borrarla
-        MongoCursor<Document> resultDocument  = (MongoCursor<Document>) collection.findOneAndDelete(findDocument);       
-       
-         
-
-      
+          try {
+              findDocument = new Document("_id", new ObjectId(identificador));   
+              if(identificador.length() > 3){
+                  cadena = "espacio vacio en iusaidoop";
+              }
+          } catch (Exception e) {
+              cadena = e.toString();
+              banderaExepcion = true;
+              cadena += " ,EL identificador no es un numero hexadecimal valido";
+          }
+          
+        if(!banderaExepcion){
+           MongoCursor<Document> resultDocumentCadena = null;
+                  resultDocumentCadena = collection.find(findDocument).iterator();  
+                while (resultDocumentCadena.hasNext() ) { //mientras exitan mas elementos para iterar continuar                               
+                resultDocumentCadena.next().toJson();                             
+         }
+           if(resultDocumentCadena == null){
+               cadena = resultDocumentCadena.toString();
+               
+               //cadena = "No se encontro un documento con ese identidicador";
+           }else{
+               cadena = "El documento fue eliminado con exito ";
+               cadena += resultDocumentCadena.toString();
+                //buscar una persona   y borrarla
+               Document resultDocument  = collection.findOneAndDelete(findDocument);                      
+           }              
+        }                                
         return cadena;
     }
+      
      public String MostrarDocumentoCon(String identificador) {
-        String cadena ="No se encontro usuario";          
+        String cadena ="El usuario encontrado con ese identificador fue: \n\n";          
         MongoClient mongoClient;
         MongoClientURI uri = new
         MongoClientURI("mongodb://userLab3:passworduserLab3@93.188.167.110:27017/?authSource=lab3");        
@@ -133,14 +153,12 @@ public class paginaRoad {
         MongoCollection<Document> collection = db.getCollection("usuarios");   
         //Document findDocument = new Document("nombre", identificador);            
          Document findDocument = new Document("_id", new ObjectId(identificador));         
-
+         
        //collection.deleteOne(new Document("_id", new ObjectId(identificador)));
         MongoCursor<Document> resultDocument  = collection.find(findDocument).iterator();       
-        cadena = resultDocument.next().toJson();  
+        cadena += resultDocument.next().toJson();  
        return cadena;
-     }
-      
-    
+     }          
 }
 
 
