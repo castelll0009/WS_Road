@@ -4,18 +4,24 @@
  * and open the template in the editor.
  */
 package control;
-
 //import com.mongodb.client.MongoClient;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.BasicDBObject;  
+import com.mongodb.DBObject;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCursor;
+import static com.mongodb.client.model.Filters.eq;
 import org.bson.Document;
-/**
- *
- * @author Ivan Esteban Castill
- */
+import org.bson.conversions.Bson;
+import org.bson.types.ObjectId;
+
 public class paginaRoad {
         
     
@@ -31,7 +37,7 @@ public class paginaRoad {
         MongoCollection<Document> collection = db.getCollection("empleados");
         //Mostrar primer registro
         return collection.find().first().toJson();    
-    }      
+    }
 }
 
 
