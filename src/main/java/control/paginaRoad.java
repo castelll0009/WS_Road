@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package control;
-import junit.framework.Assert;  
 //import com.mongodb.client.MongoClient;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -22,10 +21,7 @@ import static com.mongodb.client.model.Filters.eq;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
-/**
- *
- * @author Ivan Esteban Castill
- */
+
 public class paginaRoad {
         
     
@@ -40,31 +36,8 @@ public class paginaRoad {
         db = mongoClient.getDatabase("lab3");
         MongoCollection<Document> collection = db.getCollection("empleados");
         //Mostrar primer registro
-        return collection.find().first().toJson();
-    
-    }
-    
-    public String ConsultarUltimoUsuario(){   
-        String cadena =null;
-        
-        MongoClient mongoClient;
-        MongoClientURI uri = new
-        MongoClientURI("mongodb://userLab3:passworduserLab3@93.188.167.110:27017/?authSource=lab3");        
-        MongoDatabase db;        
-        mongoClient = new MongoClient(uri);        
-        db = mongoClient.getDatabase("lab3");
-        
-        MongoCollection<Document> collection = db.getCollection("usuarios");   
-        //Mostrar ultimo registro
-       //DBCollection usuarios = db.getCollection("usuarios");        
-        Document findDocument = new Document();
-        MongoCursor<Document> resultDocument = collection.find(findDocument).iterator();         
-        while (resultDocument.hasNext() ) { //mientras exitan mas elementos para iterar continuar                               
-                cadena = resultDocument.next().toJson();                             
-         }
-        return cadena;
-    }
-
+        return collection.find().first().toJson();    
+    }       
     // consultar los  ultimos 5 usuarios
      public String ConsultarUltimosCincoUsuarios(){       
         String cadena = "";
@@ -92,8 +65,7 @@ public class paginaRoad {
         return cadena;
         //Mostrar primer registro       
         //return collection.find().first().toJson();                 
-    }   
-     
+    }        
       public String EliminarDocumentoCon(String identificador){   
         String cadena = "";          
         MongoClient mongoClient;
@@ -115,19 +87,25 @@ public class paginaRoad {
               cadena = e.toString();
               banderaExepcion = true;
               cadena += " ,EL identificador no es un numero hexadecimal valido";
+              return cadena;
           }
         MongoCursor<Document> resultDocumentCadena = null;
-        if(!banderaExepcion){          
-                  resultDocumentCadena = collection.find(findDocument).iterator();                                                 
-           if(resultDocumentCadena.hasNext() == true){
-               cadena = "El documento fue eliminado con exito:\n\n ";
-               cadena += resultDocumentCadena.next().toJson();     
-                //buscar una persona   y borrarla                                   
-               resultDocumentCadena =  (MongoCursor<Document>) collection.findOneAndDelete(findDocument);               
-           }else{
-               cadena = resultDocumentCadena.next().toJson();        
-               cadena += "   No se encontro un documento con ese identidicador";
-           }              
+        if(!banderaExepcion){   
+            boolean encontroDocumento = false;                    
+            resultDocumentCadena = collection.find(findDocument).iterator();                             
+            if(resultDocumentCadena.hasNext() == true){
+                encontroDocumento = true;
+                cadena = "Este documento fue eliminado con exito:\n\n ";  
+                cadena +=resultDocumentCadena.next().toJson();                              
+                //buscar una persona   y borrarla                 
+                try {
+                     resultDocumentCadena =  (MongoCursor<Document>) collection.findOneAndDelete(findDocument);    
+                } catch (Exception e) {
+                    //omite la exepcion
+                }              
+            } else{
+                 cadena = "No se encontro un documento con  identificador: \n"+identificador;             
+            }                                                                                                                      
         }                                
         return cadena;
     }
