@@ -120,13 +120,13 @@ public class paginaRoad {
         if(!banderaExepcion){          
                   resultDocumentCadena = collection.find(findDocument).iterator();                                                 
            if(resultDocumentCadena.hasNext() == true){
-               cadena = resultDocumentCadena.next().toJson();        
-               cadena += "   No se encontro un documento con ese identidicador";
-           }else{
-               cadena = "El documento fue eliminado con exito ";
+               cadena = "El documento fue eliminado con exito:\n\n ";
                cadena += resultDocumentCadena.next().toJson();     
                 //buscar una persona   y borrarla                                   
-               resultDocumentCadena =  (MongoCursor<Document>) collection.findOneAndDelete(findDocument);
+               resultDocumentCadena =  (MongoCursor<Document>) collection.findOneAndDelete(findDocument);               
+           }else{
+               cadena = resultDocumentCadena.next().toJson();        
+               cadena += "   No se encontro un documento con ese identidicador";
            }              
         }                                
         return cadena;
